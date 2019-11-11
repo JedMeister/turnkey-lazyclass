@@ -1,8 +1,7 @@
 # Copyright (c) 2010 Liraz Siri <liraz@turnkeylinux.org>
+#               2019 TurnKey GNU/Linux <admin@turnkeylinux.org>
 #
-# This file is part of turnkey-pylib.
-#
-# turnkey-pylib is open source software; you can redistribute it and/or
+# turnkey-lazyclass is open source software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 3 of the
 # License, or (at your option) any later version.
@@ -19,7 +18,7 @@ Limitations:
 
             try
                 dir(object._object)
-    
+
 Usage:
 
     class A:
@@ -40,6 +39,7 @@ Usage:
     print a.a
 
 """
+
 
 class LazyClassWrapper(object):
     __local_attr__ = ['_init_args', '_object_val']
@@ -74,10 +74,12 @@ class LazyClassWrapper(object):
     def __repr__(self):
         return repr(self._object)
 
+
 def lazyclass(constructor):
     def wrapper(*args, **kws):
         return LazyClassWrapper(constructor, *args, **kws)
     return wrapper
+
 
 def test():
     class Name:
@@ -109,6 +111,7 @@ def test():
     print("ln.name = " + ln.name)
 
     return ln
+
 
 if __name__ == "__main__":
     test()
