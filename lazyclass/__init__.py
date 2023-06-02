@@ -1,12 +1,12 @@
 # Copyright (c) 2010 Liraz Siri <liraz@turnkeylinux.org>
-#               2019 TurnKey GNU/Linux <admin@turnkeylinux.org>
+#               2019-2023 TurnKey GNU/Linux <admin@turnkeylinux.org>
 #
 # turnkey-lazyclass is open source software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
 # published by the Free Software Foundation; either version 3 of the
 # License, or (at your option) any later version.
 """
-This module implement lazy object construction.
+This module implements lazy object construction.
 
 Limitations:
 
@@ -23,12 +23,12 @@ Usage:
 
     class A:
         def __init__(self, a):
-            print 'A(%s)' % a
+            print f'A({a})'
             self.a = a
 
     # initialized immediately
     a = A(111)
-    print a.a
+    print(a.a)
 
     LazyA = lazyclass(A)
 
@@ -36,12 +36,12 @@ Usage:
     a = LazyA(111)
 
     # initialized now (first attribute access)
-    print a.a
+    print(a.a)
 
 """
 
 
-class LazyClassWrapper(object):
+class LazyClassWrapper:
     __local_attr__ = ['_init_args', '_object_val']
 
     def __init__(self, constructor, *args, **kws):
@@ -86,7 +86,7 @@ def test():
         def __init__(self, name):
             self.name = name
 
-            print("initializing Name(%s)" % name)
+            print(f"initializing Name({name})")
 
         def val(self):
             return self.name
