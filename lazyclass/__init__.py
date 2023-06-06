@@ -23,7 +23,7 @@ Usage:
 
     class A:
         def __init__(self, a):
-            print f'A({a})'
+            print(f'A({a})')
             self.a = a
 
     # initialized immediately
